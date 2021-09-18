@@ -5,11 +5,28 @@ export (int) var speed = 200
 var targetPosition = Vector2()
 var velocity = Vector2()
 
-func get_input():
+func check_movement():
 	if Input.is_action_pressed("m1"):
 		targetPosition = get_global_mouse_position()
 	else:
 		targetPosition = position
+
+func check_magnetic_field():
+	var collisionShape2D = get_node("MagneticField/CollisionShape2D")
+	var scaleChange = 0.02
+	var originalScale = Vector2(2.2, 2.2)
+	
+	if Input.is_action_pressed("m2"):
+		var newScale = Vector2 (collisionShape2D.scale.x + scaleChange, collisionShape2D.scale.y + scaleChange)
+		collisionShape2D.scale = newScale
+	else:
+		var newScale = Vector2 (collisionShape2D.scale.x - scaleChange, collisionShape2D.scale.y - scaleChange)
+		if newScale >= originalScale:
+			collisionShape2D.scale = newScale
+
+func get_input():
+	check_movement()
+	check_magnetic_field()
 
 func _physics_process(_delta):
 	get_input()
@@ -27,11 +44,11 @@ func _on_StickingField_area_entered(area):
 		var foreignRobotSprite = foreignRobot.get_node("foreign_robot").duplicate()
 		var foreignRobotCollisionShape = foreignRobot.get_node("CollisionShape2D").duplicate()
 		var foreignRobotRelativePosition = foreignRobot.position - self.position
-
+		
 		foreignRobotSprite.position = foreignRobotRelativePosition
 		foreignRobotCollisionShape.position = foreignRobotRelativePosition
-
+		
 		get_tree().get_current_scene().remove_child(area.get_parent())
-
+		
 		add_child(foreignRobotSprite)
 		get_node("StickingField").call_deferred("add_child", foreignRobotCollisionShape)
