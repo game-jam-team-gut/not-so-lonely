@@ -19,8 +19,7 @@ func _physics_process(_delta):
 
 func _on_MagneticField_area_entered(area):
 	if area.is_in_group("ForeignRobots"):
-		pass #here add moving towards Barney
-
+		pass
 
 func _on_StickingField_area_entered(area):
 	if area.is_in_group("ForeignRobots"):
@@ -35,4 +34,4 @@ func _on_StickingField_area_entered(area):
 		get_tree().get_current_scene().remove_child(area.get_parent())
 
 		add_child(foreignRobotSprite)
-		add_child(foreignRobotCollisionShape)
+		get_node("StickingField").call_deferred("add_child", foreignRobotCollisionShape)
