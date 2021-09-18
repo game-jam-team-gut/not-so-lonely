@@ -20,8 +20,11 @@ func generate_starting_robots():
 		var robot_instance = robots[rand_range(0, len(robots))].instance()
 		get_parent().add_child(robot_instance)
 		rng.randomize()
-		var delta = Vector2(rng.randf_range(-1,1), rng.randf_range(-1,1))
-		robot_instance.position = camera.get_camera_position() + spawn_distance * delta
+		var signs = [1, -1]
+		var rand_sign = Vector2(signs[rng.randi_range(0,1)], signs[rng.randi_range(0,1)])
+		rng.randomize()
+		var delta = Vector2(rng.randf_range(0.1,1), rng.randf_range(0.1,1))
+		robot_instance.position = camera.get_camera_position() + spawn_distance * delta * rand_sign
 		
 		current_robots.append(robot_instance)
 		robot_instance.camera = camera
