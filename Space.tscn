@@ -10,3 +10,12 @@ position = Vector2( 73.0537, 105.126 )
 
 [node name="ForeignRobot" parent="." instance=ExtResource( 2 )]
 position = Vector2( 326.069, 126.508 )
+
+[node name="ForeignRobot2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 889.545, 119.773 )
+
+[node name="ForeignRobot3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 652.138, 253.016 )
+
+[node name="ForeignRobot4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 338.291, 464.281 )
