@@ -14,6 +14,25 @@ func get_input():
 func _physics_process(_delta):
 	get_input()
 	velocity = position.direction_to(targetPosition) * speed
-	look_at(targetPosition)
 	if position.distance_to(targetPosition) > 5:
 		velocity = move_and_slide(velocity)
+
+func _on_MagneticField_area_entered(area):
+	if area.is_in_group("ForeignRobots"):
+		pass #here add moving towards Barney
+
+
+func _on_StickingField_area_entered(area):
+	if area.is_in_group("ForeignRobots"):
+		var foreignRobot = area.get_parent()
+		var foreignRobotSprite = foreignRobot.get_node("foreign_robot").duplicate()
+		var foreignRobotCollisionShape = foreignRobot.get_node("CollisionShape2D").duplicate()
+		var foreignRobotRelativePosition = foreignRobot.position - self.position
+		
+		foreignRobotSprite.position = foreignRobotRelativePosition
+		foreignRobotCollisionShape.position = foreignRobotRelativePosition
+		
+		get_tree().get_current_scene().remove_child(area.get_parent())
+		
+		add_child(foreignRobotSprite)
+		add_child(foreignRobotCollisionShape)
