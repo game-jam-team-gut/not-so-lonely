@@ -28,11 +28,11 @@ func _on_StickingField_area_entered(area):
 		var foreignRobotSprite = foreignRobot.get_node("foreign_robot").duplicate()
 		var foreignRobotCollisionShape = foreignRobot.get_node("CollisionShape2D").duplicate()
 		var foreignRobotRelativePosition = foreignRobot.position - self.position
-		
+
 		foreignRobotSprite.position = foreignRobotRelativePosition
 		foreignRobotCollisionShape.position = foreignRobotRelativePosition
-		
+
 		get_tree().get_current_scene().remove_child(area.get_parent())
-		
+
 		add_child(foreignRobotSprite)
 		add_child(foreignRobotCollisionShape)
