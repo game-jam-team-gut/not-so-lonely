@@ -36,7 +36,19 @@ func _physics_process(_delta):
 
 func _on_MagneticField_area_entered(area):
 	if area.is_in_group("ForeignRobots"):
-		pass
+		var foreignRobot = area.get_parent()
+		var positionDifference = foreignRobot.position - self.position
+		print(positionDifference)
+		
+		if(positionDifference.x < 0):
+			foreignRobot.add_force(Vector2(0, 0), Vector2(-positionDifference.x, 0))
+		elif(positionDifference.x > 0):
+			foreignRobot.add_force(Vector2(0, 0), Vector2(-positionDifference.x, 0))
+		if(positionDifference.y < 0):
+			foreignRobot.add_force(Vector2(0, 0), Vector2(0, -positionDifference.y))
+		elif(positionDifference.y > 0):
+			foreignRobot.add_force(Vector2(0, 0), Vector2(0, -positionDifference.y))
+		
 
 func _on_StickingField_area_entered(area):
 	if area.is_in_group("ForeignRobots"):
