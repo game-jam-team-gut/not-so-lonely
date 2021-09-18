@@ -11,7 +11,6 @@ onready var spawn_distance = camera.get_viewport().size.length()
 var rng = RandomNumberGenerator.new()
 
 func _ready():
-	print(spawn_distance)
 	yield(get_tree().create_timer(.1), "timeout")
 	generate_starting_robots()
 
