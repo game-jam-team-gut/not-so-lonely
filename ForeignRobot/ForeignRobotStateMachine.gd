@@ -17,8 +17,6 @@ func _state_logic(delta):
 			parent.idle()
 		states.choose_direction:
 			parent.choose_direction()
-		states.go:
-			parent.go()
 
 func _get_transition(delta):
 	match current_state:
@@ -32,7 +30,9 @@ func _get_transition(delta):
 	return null;
 
 func _enter_state(new_state, old_state):
-	pass
+	match new_state:
+		states.go:
+			parent.go()
 
 func _exit_state(old_state, new_state):
 	pass
