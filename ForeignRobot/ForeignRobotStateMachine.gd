@@ -4,7 +4,6 @@ var label: Label
 var change_to_next_state = false
 
 func _ready():
-	print(parent.xd)
 	label = get_node("../Label")
 	add_state("idle")
 	add_state("choose_direction")

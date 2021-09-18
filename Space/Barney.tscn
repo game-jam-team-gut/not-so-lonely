@@ -35,3 +35,8 @@ script = ExtResource( 4 )
 
 [connection signal="area_entered" from="MagneticField" to="." method="_on_MagneticField_area_entered"]
 [connection signal="area_entered" from="StickingField" to="." method="_on_StickingField_area_entered"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+smoothing_enabled = true
+smoothing_speed = 3.0
