@@ -12,4 +12,3 @@
 position = Vector2( 73.0537, 105.126 )
 
 [node name="RobotSpawner" parent="." instance=ExtResource( 4 )]
->>>>>>> dd881569d3ab751728db2e222db0da8c836188f3
