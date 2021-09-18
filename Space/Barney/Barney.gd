@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 signal robot_sticked(global_pos)
 
+onready var stickedRobotScene = preload("res://Space/StickedRobot.tscn")
+
 export (int) var speed = 200
 
 var targetPosition = Vector2()
@@ -55,20 +57,22 @@ func _on_MagneticField_area_entered(area):
 func _on_StickingField_area_entered(area):
 	if area.is_in_group("ForeignRobots"):
 		var foreignRobot = area.get_parent()
-		var foreignRobotSprite = foreignRobot.get_node("foreign_robot").duplicate()
-		var foreignRobotCollisionShape = foreignRobot.get_node("CollisionShape2D").duplicate()
 		var foreignRobotRelativePosition = foreignRobot.position - self.position
-		var foreignRobotGlobalRot = foreignRobot.global_rotation
+		var foreignRobotGlobalRotation = foreignRobot.global_rotation
 		
-		foreignRobotSprite.position = foreignRobotRelativePosition
-		foreignRobotCollisionShape.position = foreignRobotRelativePosition
+		var stickedRobot = stickedRobotScene.instance()
+		var stickedRobotSprite = stickedRobot.get_node("sticked_robot")
+		var stickedRobotCollisionShape2D = stickedRobot.get_node("StickingField/CollisionShape2D")
 		
-		foreignRobotSprite.global_rotation = foreignRobotGlobalRot
-		foreignRobotCollisionShape.global_rotation = foreignRobotGlobalRot
+		stickedRobotSprite.position = foreignRobotRelativePosition
+		stickedRobotCollisionShape2D.position = foreignRobotRelativePosition
+		
+		stickedRobotSprite.global_rotation = foreignRobotGlobalRotation
+		stickedRobotCollisionShape2D.global_rotation = foreignRobotGlobalRotation
 		
 		get_tree().get_current_scene().remove_child(area.get_parent())
 		
-		add_child(foreignRobotSprite)
-		get_node("StickingField").call_deferred("add_child", foreignRobotCollisionShape)
-		emit_signal("robot_sticked", foreignRobotSprite.global_position)
+		call_deferred("add_child", stickedRobot)
+		
+		emit_signal("robot_sticked", stickedRobot.global_position)
 		
