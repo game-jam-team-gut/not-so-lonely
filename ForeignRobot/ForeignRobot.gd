@@ -1,8 +1,10 @@
-extends KinematicBody2D
+extends RigidBody2D
 
 var direction_to_go = null
 var rng = RandomNumberGenerator.new()
 var camera #set by spawner 
+var movement_force_max = 12
+var movement_force_min = 5
 
 func _ready():
 	pass
@@ -20,7 +22,10 @@ func choose_direction():
 	direction_to_go = camera.get_camera_position() + move_distance * delta * rand_sign
 
 func go():
-	move_and_collide((direction_to_go - position).normalized())
+	rng.randomize()
+	var strength = (direction_to_go - position).normalized() * rng.randi_range(movement_force_min,movement_force_max)
+	add_force(Vector2.ZERO, strength * 2)
+	add_central_force(strength)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

@@ -10,7 +10,8 @@ extents = Vector2( 66.1145, 60.767 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 85.7504, 85.932 )
 
-[node name="ForeignRobot" type="KinematicBody2D"]
+[node name="ForeignRobot" type="RigidBody2D"]
+gravity_scale = 0.0
 script = ExtResource( 2 )
 
 [node name="foreign_robot" type="Sprite" parent="."]
