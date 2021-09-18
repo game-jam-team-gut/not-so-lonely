@@ -11,7 +11,7 @@ func _ready():
 	add_state("go")
 	call_deferred("set_state", states.idle)
 
-func _state_logic(delta):
+func _state_logic(_delta):
 	label.text = states.keys()[current_state]
 	match current_state:
 		states.idle:
@@ -19,7 +19,7 @@ func _state_logic(delta):
 		states.choose_direction:
 			parent.choose_direction()
 
-func _get_transition(delta):
+func _get_transition(_delta):
 	var state_duration = (OS.get_ticks_msec() - state_start) #msec
 	match current_state:
 		states.idle:
@@ -31,11 +31,11 @@ func _get_transition(delta):
 				return states.idle
 	return null;
 
-func _enter_state(new_state, old_state):
+func _enter_state(new_state, _old_state):
 	state_start = OS.get_ticks_msec()
 	match new_state:
 		states.go:
 			parent.go()
 
-func _exit_state(old_state, new_state):
+func _exit_state(_old_state, _new_state):
 	pass
