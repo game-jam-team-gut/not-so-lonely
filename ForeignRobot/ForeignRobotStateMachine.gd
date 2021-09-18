@@ -2,6 +2,7 @@ extends "res://Scripts/StateMachine.gd"
 
 var label: Label
 var change_to_next_state = false
+var state_start = 0
 
 func _ready():
 	label = get_node("../Label")
@@ -19,17 +20,19 @@ func _state_logic(delta):
 			parent.choose_direction()
 
 func _get_transition(delta):
+	var state_duration = (OS.get_ticks_msec() - state_start) #msec
 	match current_state:
 		states.idle:
 			return states.choose_direction
 		states.choose_direction:
 			return states.go
 		states.go:
-			if ((parent.direction_to_go - parent.position).length() < 1):
+			if ((parent.position_to_go - parent.position).length() < 1) || state_duration > parent.state_time:
 				return states.idle
 	return null;
 
 func _enter_state(new_state, old_state):
+	state_start = OS.get_ticks_msec()
 	match new_state:
 		states.go:
 			parent.go()
