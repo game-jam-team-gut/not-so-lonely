@@ -1,7 +1,8 @@
 extends KinematicBody2D
 
 var direction_to_go = null
-var xd = "XDF"
+var rng = RandomNumberGenerator.new()
+var camera #set by spawner 
 
 func _ready():
 	pass
@@ -10,11 +11,13 @@ func idle():
 	pass # do nothing XD
 
 func choose_direction():
-	#get player position
-	#get zone in which we can move
-	#choose target
-	#for now leave this shit
-	direction_to_go = Vector2(rand_range(100, 400), rand_range(100,400))
+	var move_distance = camera.get_viewport().size.length()
+	rng.randomize()
+	var signs = [1, -1]
+	var rand_sign = Vector2(signs[rng.randi_range(0,1)], signs[rng.randi_range(0,1)])
+	rng.randomize()
+	var delta = Vector2(rng.randf_range(1,2), rng.randf_range(1,2))
+	direction_to_go = camera.get_camera_position() + move_distance * delta * rand_sign
 
 func go():
 	move_and_collide((direction_to_go - position).normalized())
