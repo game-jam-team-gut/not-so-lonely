@@ -1,8 +1,5 @@
 extends RigidBody2D
 
-
-
-var go = 0
 var position_to_go = null
 
 var rng = RandomNumberGenerator.new()
@@ -38,9 +35,6 @@ func choose_direction():
 				position_to_go = camera.global_position + Vector2(rng.randf_range(-100, 100), rng.randf_range(-100, 100))
 
 func go():
-	go += 1
-	if (go > 0):
-		print(name + " GO " + str(go))
 	rng.randomize()
 	var strength = (position_to_go - position).normalized() * rng.randi_range(movement_force_min, movement_force_max)
 	add_force(Vector2.ZERO, strength)
