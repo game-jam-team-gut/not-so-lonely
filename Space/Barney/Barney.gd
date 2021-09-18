@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal robot_sticked(global_pos)
+
 export (int) var speed = 200
 
 var targetPosition = Vector2()
@@ -64,3 +66,4 @@ func _on_StickingField_area_entered(area):
 		
 		add_child(foreignRobotSprite)
 		get_node("StickingField").call_deferred("add_child", foreignRobotCollisionShape)
+		emit_signal("robot_sticked", foreignRobotSprite.global_position)
