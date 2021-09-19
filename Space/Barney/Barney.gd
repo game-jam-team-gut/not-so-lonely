@@ -2,7 +2,8 @@ extends KinematicBody2D
 
 signal robot_sticked(pos)
 
-onready var collisionShape2D = get_node("Rotates/MagneticField/CollisionShape2D")
+onready var magneticFieldcollisionShape2D = get_node("Rotates/MagneticField/CollisionShape2D")
+onready var magneticFieldSprite = get_node("Rotates/MagneticField/Sprite")
 onready var stickedRobotScene = preload("res://Space/StickedRobot.tscn")
 
 export (int) var speed = 200
@@ -46,8 +47,10 @@ func getInput():
 	checkMagneticFieldType()
 
 func updateMagneticFieldSize():
-	collisionShape2D.shape.extents.x += get_viewport().size.x * 0.25 * get_node("Camera2D").zoom.x - collisionShape2D.position.x
-	collisionShape2D.position.x = get_viewport().size.x * 0.25 * get_node("Camera2D").zoom.x
+	magneticFieldcollisionShape2D.shape.extents.x += get_viewport().size.x * 0.25 * get_node("Camera2D").zoom.x - magneticFieldcollisionShape2D.position.x
+	magneticFieldcollisionShape2D.position.x = get_viewport().size.x * 0.25 * get_node("Camera2D").zoom.x
+	magneticFieldSprite.scale.x += (get_viewport().size.x * 0.25 * get_node("Camera2D").zoom.x / 3000) - magneticFieldSprite.scale.x
+	magneticFieldSprite.position.x = get_viewport().size.x * 0.25 * get_node("Camera2D").zoom.x
 
 func checkMagneticFieldContents(delta):
 	if get_node("Rotates/MagneticField").get_overlapping_areas().size() > 0:
