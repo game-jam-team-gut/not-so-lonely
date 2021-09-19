@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Barney.png-a0c6e94420a69eaed8f8c1ab2ef8073f.stex"
+path="res://.import/foreign_robot_8.png-4b0bc6df69ef5e60b713131ca9749044.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Space/Barney/Barney.png"
-dest_files=[ "res://.import/Barney.png-a0c6e94420a69eaed8f8c1ab2ef8073f.stex" ]
+source_file="res://Space/ForeignRobot/foreign_robot_8.png"
+dest_files=[ "res://.import/foreign_robot_8.png-4b0bc6df69ef5e60b713131ca9749044.stex" ]
 
 [params]
 
