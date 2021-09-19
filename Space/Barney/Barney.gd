@@ -2,12 +2,18 @@ extends KinematicBody2D
 
 signal robot_sticked(pos)
 
+onready var collisionShape2D = get_node("Rotates/MagneticField/CollisionShape2D")
 onready var stickedRobotScene = preload("res://Space/StickedRobot.tscn")
 
 export (int) var speed = 200
 
 var targetPosition = Vector2()
 var velocity = Vector2()
+var minimalMagneticFieldPositionX
+
+func _ready():
+	minimalMagneticFieldPositionX = collisionShape2D.position.x
+	print(minimalMagneticFieldPositionX)
 
 func rotate_barney():
 	get_node("Rotates").look_at(get_global_mouse_position())
@@ -19,16 +25,16 @@ func check_movement():
 		targetPosition = position
 
 func check_magnetic_field():
-	var collisionShape2D = get_node("Rotates/MagneticField/CollisionShape2D")
 	var xChange = 10.0
 	
 	if Input.is_action_pressed("m2"):
-		collisionShape2D.shape.extents.x += xChange
-		collisionShape2D.position.x += xChange
+		if collisionShape2D.position.x < get_viewport().size.x / 2.5:
+			collisionShape2D.shape.extents.x += xChange
+			collisionShape2D.position.x += xChange
 	else:
-		pass
-		#collisionShape2D.shape.extents.x -= resize_amount * 0.5
-		#collisionShape2D.position.x -= resize_amount * 0.5
+		if collisionShape2D.position.x > minimalMagneticFieldPositionX:
+			collisionShape2D.shape.extents.x -= xChange
+			collisionShape2D.position.x -= xChange
 
 func get_input():
 	check_movement()
