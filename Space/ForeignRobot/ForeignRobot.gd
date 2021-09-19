@@ -14,6 +14,10 @@ func _ready():
 	rng.randomize()
 	state_time = rng.randi_range(500, 10000)
 
+func destroy():
+	#particles
+	queue_free()
+
 func idle():
 	pass # do nothing XD
 
