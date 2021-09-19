@@ -94,6 +94,12 @@ func _on_StickingField_area_entered(area):
 		call_deferred("add_child", stickedRobot)
 		
 		emit_signal("robot_sticked", foreignRobotRelativePosition)
+	elif area.is_in_group("Asteroid"):
+		area.get_parent().destroy()
+		destroy()
 
 func robot_sticked_to_another(pos):
 	emit_signal("robot_sticked", pos)
+
+func destroy():
+	print("DEATH")
