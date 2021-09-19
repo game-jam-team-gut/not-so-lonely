@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/MagneticField.png-f75696eb9e4769cd706865445eab1429.stex"
+path="res://.import/asteroid2.png-884300e6c781bd6a1b93098021e82bca.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Space/Barney/MagneticField.png"
-dest_files=[ "res://.import/MagneticField.png-f75696eb9e4769cd706865445eab1429.stex" ]
+source_file="res://Space/Asteroids/asteroid2.png"
+dest_files=[ "res://.import/asteroid2.png-884300e6c781bd6a1b93098021e82bca.stex" ]
 
 [params]
 

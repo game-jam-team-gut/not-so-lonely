@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/robot_1.mp3-f5b65065682df019da2094bf3970de51.mp3str"
+
+[deps]
+
+source_file="res://Space/robot_1.mp3"
+dest_files=[ "res://.import/robot_1.mp3-f5b65065682df019da2094bf3970de51.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

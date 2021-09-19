@@ -20,8 +20,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Not so lonely"
-run/main_scene="res://Space.tscn"
+config/name="Not So Lonely"
+run/main_scene="res://MainMenu.tscn"
 config/icon="res://icon.png"
 
 [display]
