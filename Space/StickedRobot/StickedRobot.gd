@@ -28,4 +28,4 @@ func _on_StickingField_area_entered(area):
 		
 		get_parent().call_deferred("add_child", stickedRobot)
 		
-		emit_signal("robot_sticked", stickedRobot.position)
+		emit_signal("robot_sticked", foreignRobotRelativePosition)
