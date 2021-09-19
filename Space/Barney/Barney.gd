@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-signal robot_sticked(global_pos)
+signal robot_sticked(pos)
 
 onready var stickedRobotScene = preload("res://Space/StickedRobot.tscn")
 
@@ -64,6 +64,7 @@ func _on_StickingField_area_entered(area):
 		var foreignRobotRotation = foreignRobot.rotation
 		
 		var stickedRobot = stickedRobotScene.instance()
+		stickedRobot.player = self
 		var stickedRobotSprite = stickedRobot.get_node("sticked_robot")
 		var stickedRobotCollisionShape2D = stickedRobot.get_node("StickingField/CollisionShape2D")
 		
@@ -77,5 +78,8 @@ func _on_StickingField_area_entered(area):
 		
 		call_deferred("add_child", stickedRobot)
 		
-		emit_signal("robot_sticked", stickedRobot.position)
-		
+		emit_signal("robot_sticked", foreignRobotRelativePosition)
+	
+func robot_sticked_to_another(pos):
+	emit_signal("robot_sticked", pos)
+
