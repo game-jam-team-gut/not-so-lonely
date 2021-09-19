@@ -23,23 +23,15 @@ func check_movement():
 	else:
 		targetPosition = position
 
-func check_magnetic_field():
-	var xChange = 10.0
-	
-	if Input.is_action_pressed("m2"):
-		if collisionShape2D.position.x < get_viewport().size.x * 0.25 * get_node("Camera2D").zoom.x:
-			collisionShape2D.shape.extents.x += xChange
-			collisionShape2D.position.x += xChange
-	else:
-		if collisionShape2D.position.x > minimalMagneticFieldPositionX:
-			collisionShape2D.shape.extents.x -= xChange
-			collisionShape2D.position.x -= xChange
+func update_magnetic_field_size():
+	collisionShape2D.shape.extents.x += get_viewport().size.x * 0.25 * get_node("Camera2D").zoom.x - collisionShape2D.position.x
+	collisionShape2D.position.x = get_viewport().size.x * 0.25 * get_node("Camera2D").zoom.x
 
 func get_input():
 	check_movement()
-	check_magnetic_field()
 
 func _physics_process(_delta):
+	update_magnetic_field_size()
 	get_input()
 	velocity = position.direction_to(targetPosition) * speed
 	if position.distance_to(targetPosition) > 5:
