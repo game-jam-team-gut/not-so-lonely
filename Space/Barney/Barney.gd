@@ -13,6 +13,10 @@ export (int) var scaleChangeFactor = 16;
 var targetPosition = Vector2()
 var velocity = Vector2()
 
+func rotate_barney():
+	get_node("Sprite").look_at(get_global_mouse_position())
+	get_node("StickingField/CollisionShape2D").look_at(get_global_mouse_position())
+
 func check_movement():
 	if Input.is_action_pressed("m1"):
 		targetPosition = get_global_mouse_position()
@@ -45,6 +49,7 @@ func _physics_process(_delta):
 	velocity = position.direction_to(targetPosition) * speed
 	if position.distance_to(targetPosition) > 5:
 		velocity = move_and_slide(velocity)
+	rotate_barney()
 
 func _on_MagneticField_area_entered(area):
 	if area.is_in_group("ForeignRobots"):
