@@ -75,10 +75,10 @@ itchio:web:
   only:
     - release
 
-
 itchio:windows:
   stage: deploy
   script:
+    - butler login
     - butler push ./build/windows $ITCHIO_USERNAME/$ITCHIO_GAME:windows
   dependencies:
     - windows
