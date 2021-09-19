@@ -13,7 +13,6 @@ var minimalMagneticFieldPositionX
 
 func _ready():
 	minimalMagneticFieldPositionX = collisionShape2D.position.x
-	print(minimalMagneticFieldPositionX)
 
 func rotate_barney():
 	get_node("Rotates").look_at(get_global_mouse_position())
@@ -51,7 +50,6 @@ func _on_MagneticField_area_entered(area):
 	if area.is_in_group("ForeignRobots"):
 		var foreignRobot = area.get_parent()
 		var positionDifference = foreignRobot.position - self.position
-		print(positionDifference)
 		
 		if(positionDifference.x < 0):
 			foreignRobot.add_force(Vector2(0, 0), Vector2(-positionDifference.x, 0))
@@ -61,7 +59,6 @@ func _on_MagneticField_area_entered(area):
 			foreignRobot.add_force(Vector2(0, 0), Vector2(0, -positionDifference.y))
 		elif(positionDifference.y > 0):
 			foreignRobot.add_force(Vector2(0, 0), Vector2(0, -positionDifference.y))
-		
 
 func _on_StickingField_area_entered(area):
 	if area.is_in_group("ForeignRobots"):
@@ -88,7 +85,6 @@ func _on_StickingField_area_entered(area):
 		call_deferred("add_child", stickedRobot)
 		
 		emit_signal("robot_sticked", foreignRobotRelativePosition)
-	
+
 func robot_sticked_to_another(pos):
 	emit_signal("robot_sticked", pos)
-
