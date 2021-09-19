@@ -11,7 +11,7 @@
 [node name="ParallaxBackground" type="ParallaxBackground"]
 
 [node name="Space" type="ParallaxLayer" parent="."]
-motion_mirroring = Vector2( 3000, 3000 )
+motion_mirroring = Vector2( 3840, 2160 )
 
 [node name="Sprite" type="Sprite" parent="Space"]
 texture = ExtResource( 1 )
@@ -19,7 +19,7 @@ centered = false
 
 [node name="Stars1" type="ParallaxLayer" parent="."]
 motion_scale = Vector2( 0.3, 0.3 )
-motion_mirroring = Vector2( 3000, 3000 )
+motion_mirroring = Vector2( 3840, 2160 )
 
 [node name="Sprite" type="Sprite" parent="Stars1"]
 texture = ExtResource( 4 )
@@ -27,7 +27,7 @@ centered = false
 
 [node name="Stars2" type="ParallaxLayer" parent="."]
 motion_scale = Vector2( 0.4, 0.4 )
-motion_mirroring = Vector2( 3000, 3000 )
+motion_mirroring = Vector2( 3840, 2160 )
 
 [node name="Sprite" type="Sprite" parent="Stars2"]
 texture = ExtResource( 2 )
@@ -35,7 +35,7 @@ centered = false
 
 [node name="Stars3" type="ParallaxLayer" parent="."]
 motion_scale = Vector2( 0.5, 0.5 )
-motion_mirroring = Vector2( 3000, 3000 )
+motion_mirroring = Vector2( 3840, 2160 )
 
 [node name="Sprite" type="Sprite" parent="Stars3"]
 texture = ExtResource( 3 )
@@ -43,22 +43,23 @@ centered = false
 
 [node name="Objects" type="ParallaxLayer" parent="."]
 motion_scale = Vector2( 0.6, 0.6 )
-motion_mirroring = Vector2( 3000, 3000 )
+motion_mirroring = Vector2( 3840, 2160 )
 
 [node name="Sprite" type="Sprite" parent="Objects"]
 texture = ExtResource( 5 )
 centered = false
 
 [node name="Dust1" type="ParallaxLayer" parent="."]
-motion_mirroring = Vector2( 3000, 3000 )
+motion_mirroring = Vector2( 3840, 2160 )
 
 [node name="Sprite" type="Sprite" parent="Dust1"]
 texture = ExtResource( 6 )
 centered = false
 
 [node name="Dust2" type="ParallaxLayer" parent="."]
+visible = false
 motion_scale = Vector2( 1.3, 1.3 )
-motion_mirroring = Vector2( 3000, 3000 )
+motion_mirroring = Vector2( 3840, 2160 )
 
 [node name="Sprite" type="Sprite" parent="Dust2"]
 texture = ExtResource( 7 )
