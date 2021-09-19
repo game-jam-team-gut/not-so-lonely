@@ -9,6 +9,7 @@ func _ready():
 	add_state("idle")
 	add_state("choose_direction")
 	add_state("go")
+	add_state("attached")
 	call_deferred("set_state", states.idle)
 
 func _state_logic(_delta):
@@ -27,7 +28,12 @@ func _get_transition(_delta):
 		states.choose_direction:
 			return states.go
 		states.go:
+			if (parent.attached):
+				return states.attached
 			if ((parent.position_to_go - parent.position).length() < 1) || state_duration > parent.state_time:
+				return states.idle
+		states.attached:
+			if (not parent.attached):
 				return states.idle
 	return null;
 

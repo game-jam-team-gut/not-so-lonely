@@ -28,6 +28,7 @@ func generate_starting_robots():
 		
 		current_robots.append(robot_instance)
 		robot_instance.camera = camera
+		robot_instance.player = barney
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -47,3 +48,4 @@ func _on_SpawnTimer_timeout():
 		robot_instance.position = camera.get_camera_position() + spawn_distance * delta * rand_sign
 		current_robots.append(robot_instance)
 		robot_instance.camera = camera
+		robot_instance.player = barney

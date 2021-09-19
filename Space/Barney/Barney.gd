@@ -24,8 +24,8 @@ func check_movement():
 		targetPosition = position
 
 func update_magnetic_field_size():
-	collisionShape2D.shape.extents.x += get_viewport().size.x * 0.25 * get_node("Camera2D").zoom.x - collisionShape2D.position.x
-	collisionShape2D.position.x = get_viewport().size.x * 0.25 * get_node("Camera2D").zoom.x
+	collisionShape2D.shape.extents.x += 0
+	collisionShape2D.position.x = 0
 
 func get_input():
 	check_movement()
@@ -55,26 +55,16 @@ func _on_MagneticField_area_entered(area):
 func _on_StickingField_area_entered(area):
 	if area.is_in_group("ForeignRobots"):
 		var foreignRobot = area.get_parent()
-		var foreignRobotRelativePosition = foreignRobot.position - self.position
-		var foreignRobotRotation = foreignRobot.rotation
-		var foreignRobotSprite = foreignRobot.get_node("Sprite").duplicate()
-		var foreignRobotCollisionShape2D = foreignRobot.get_node("Area2D/CollisionShape2D").duplicate()
-		
-		foreignRobotSprite.position = foreignRobotRelativePosition
-		foreignRobotCollisionShape2D.position =  foreignRobotRelativePosition
-		
-		foreignRobotSprite.rotation = foreignRobotRotation
-		foreignRobotCollisionShape2D.rotation = foreignRobotRotation
-		
-		var stickedRobot = stickedRobotScene.instance()
-		stickedRobot.player = self
-		
-		stickedRobot.add_child(foreignRobotSprite)
-		stickedRobot.get_node("StickingField").call_deferred("add_child", foreignRobotCollisionShape2D)
-		
-		get_tree().get_current_scene().remove_child(area.get_parent())
-		
-		call_deferred("add_child", stickedRobot)
+		var foreignRobotRelativePosition = foreignRobot.position - position
+		var foreignRobotGlobalPosition = foreignRobot.get_global_position()
+		foreignRobot.attach(self)
+		foreignRobot.get_parent().remove_child(foreignRobot)
+		var joint = PinJoint2D.new()
+		self.add_child(joint)
+		joint.add_child(foreignRobot)
+		joint.node_a = self.get_path()
+		joint.node_b = foreignRobot.get_path()
+		foreignRobot.set_global_position(foreignRobotGlobalPosition)
 		
 		emit_signal("robot_sticked", foreignRobotRelativePosition)
 
