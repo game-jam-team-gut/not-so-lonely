@@ -1,6 +1,6 @@
 extends Node
 
-onready var robots = [preload("res://Space/ForeignRobot1.tscn"), preload("res://Space/ForeignRobot2.tscn"), preload("res://Space/ForeignRobot3.tscn"), preload("res://Space/ForeignRobot4.tscn"), preload("res://Space/ForeignRobot5.tscn"), preload("res://Space/ForeignRobot6.tscn"), preload("res://Space/ForeignRobot7.tscn"), preload("res://Space/ForeignRobot8.tscn")]
+onready var robots = [preload("res://Space/ForeignRobot1.tscn"), preload("res://Space/ForeignRobot2.tscn"), preload("res://Space/ForeignRobot3.tscn"), preload("res://Space/ForeignRobot4.tscn"), preload("res://Space/ForeignRobot5.tscn"), preload("res://Space/ForeignRobot6.tscn"), preload("res://Space/ForeignRobot7.tscn"), preload("res://Space/ForeignRobot8.tscn"), preload("res://Space/ForeignRobot9.tscn")]
 onready var barney = get_node("../Barney")
 onready var camera = barney.get_node("Camera2D")
 
