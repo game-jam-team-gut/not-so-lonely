@@ -1,6 +1,11 @@
 extends StaticBody2D
 
-signal robot_sticked(global_pos)
+signal robot_sticked(pos)
+
+var player # set by barney or another sticked robot
+
+func _ready():
+	self.connect("robot_sticked", player, "robot_sticked_to_another")
 
 func _on_StickingField_area_entered(area):
 	if area.is_in_group("ForeignRobots"):
@@ -9,6 +14,7 @@ func _on_StickingField_area_entered(area):
 		var foreignRobotRotation = foreignRobot.rotation
 		
 		var stickedRobot = self.duplicate()
+		stickedRobot.player = player
 		var stickedRobotSprite = stickedRobot.get_node("sticked_robot")
 		var stickedRobotCollisionShape2D = stickedRobot.get_node("StickingField/CollisionShape2D")
 		
@@ -23,4 +29,3 @@ func _on_StickingField_area_entered(area):
 		get_parent().call_deferred("add_child", stickedRobot)
 		
 		emit_signal("robot_sticked", stickedRobot.position)
-		
