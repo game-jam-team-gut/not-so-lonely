@@ -62,6 +62,9 @@ itchio:linux:
     - butler push ./build/linux $ITCHIO_USERNAME/$ITCHIO_GAME:linux
   dependencies:
     - linux
+  only:
+    - release
+
 
 itchio:web:
   stage: deploy
@@ -69,6 +72,9 @@ itchio:web:
     - butler push ./build/web $ITCHIO_USERNAME/$ITCHIO_GAME:web
   dependencies:
     - web
+  only:
+    - release
+
 
 itchio:windows:
   stage: deploy
@@ -76,6 +82,9 @@ itchio:windows:
     - butler push ./build/windows $ITCHIO_USERNAME/$ITCHIO_GAME:windows
   dependencies:
     - windows
+  only:
+    - release
+
 
 itchio:macosx:
   stage: deploy
@@ -83,5 +92,8 @@ itchio:macosx:
     - butler push ./build/mac $ITCHIO_USERNAME/$ITCHIO_GAME:mac
   dependencies:
     - mac
+  only:
+    - release
+
 
 
