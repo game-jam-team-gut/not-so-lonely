@@ -45,5 +45,4 @@ scale = Vector2( 0.0763177, 0.0763177 )
 texture = ExtResource( 1 )
 
 [connection signal="robot_sticked" from="." to="Camera2D" method="_on_Barney_robot_sticked"]
-[connection signal="area_entered" from="Rotates/MagneticField" to="." method="_on_MagneticField_area_entered"]
 [connection signal="area_entered" from="Rotates/StickingField" to="." method="_on_StickingField_area_entered"]
