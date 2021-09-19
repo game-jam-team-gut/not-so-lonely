@@ -5,10 +5,6 @@ signal robot_sticked(global_pos)
 onready var stickedRobotScene = preload("res://Space/StickedRobot.tscn")
 
 export (int) var speed = 200
-export (Vector2) var minimalScale = Vector2(2.2, 2.2)
-export (int) var minimalScaleFactor = 2;
-export (int) var maximalScaleFactor = 3;
-export (int) var scaleChangeFactor = 16;
 
 var targetPosition = Vector2()
 var velocity = Vector2()
@@ -22,22 +18,17 @@ func check_movement():
 	else:
 		targetPosition = position
 
-func increase_minimal_scale():
-	minimalScale = Vector2(minimalScale.x * minimalScaleFactor, minimalScale.y * minimalScaleFactor)
-
 func check_magnetic_field():
 	var collisionShape2D = get_node("Rotates/MagneticField/CollisionShape2D")
-	var maximalScale = Vector2(minimalScale.x * maximalScaleFactor, minimalScale.y * maximalScaleFactor)
-	var scaleChange = minimalScale.x / scaleChangeFactor
+	var xChange = 10.0
 	
 	if Input.is_action_pressed("m2"):
-		var newScale = Vector2 (collisionShape2D.scale.x + scaleChange, collisionShape2D.scale.y + scaleChange)
-		if newScale <= maximalScale:
-			collisionShape2D.scale = newScale
+		collisionShape2D.shape.extents.x += xChange
+		collisionShape2D.position.x += xChange
 	else:
-		var newScale = Vector2 (collisionShape2D.scale.x - scaleChange, collisionShape2D.scale.y - scaleChange)
-		if newScale >= minimalScale:
-			collisionShape2D.scale = newScale
+		pass
+		#collisionShape2D.shape.extents.x -= resize_amount * 0.5
+		#collisionShape2D.position.x -= resize_amount * 0.5
 
 func get_input():
 	check_movement()

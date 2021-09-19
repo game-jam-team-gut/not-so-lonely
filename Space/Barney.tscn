@@ -25,14 +25,14 @@ script = ExtResource( 5 )
 [node name="Rotates" type="Node2D" parent="."]
 
 [node name="MagneticField" type="Area2D" parent="Rotates"]
+position = Vector2( -191, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rotates/MagneticField"]
-position = Vector2( 381.305, -7.1272 )
-scale = Vector2( 2.2, 2.2 )
+position = Vector2( 382, 0 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Rotates/MagneticField/CollisionShape2D"]
-position = Vector2( 1.61982, 0.240643 )
+position = Vector2( 1.61982, 0 )
 scale = Vector2( 0.623441, 0.157934 )
 texture = ExtResource( 3 )
 

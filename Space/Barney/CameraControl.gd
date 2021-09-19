@@ -17,8 +17,6 @@ func zoom_out():
 		zoom_tween.EASE_OUT
 	)
 	zoom_tween.start()
-	
-	get_parent().increase_minimal_scale() # increases minimal magnetic field scale
 
 func _on_Barney_robot_sticked(global_pos):
 	var viewport_size = get_viewport().size * 0.5 * zoom * zoom_out_treshold
