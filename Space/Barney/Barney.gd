@@ -68,17 +68,20 @@ func _on_StickingField_area_entered(area):
 		var foreignRobot = area.get_parent()
 		var foreignRobotRelativePosition = foreignRobot.position - self.position
 		var foreignRobotRotation = foreignRobot.rotation
+		var foreignRobotSprite = foreignRobot.get_node("Sprite").duplicate()
+		var foreignRobotCollisionShape2D = foreignRobot.get_node("Area2D/CollisionShape2D").duplicate()
+		
+		foreignRobotSprite.position = foreignRobotRelativePosition
+		foreignRobotCollisionShape2D.position =  foreignRobotRelativePosition
+		
+		foreignRobotSprite.rotation = foreignRobotRotation
+		foreignRobotCollisionShape2D.rotation = foreignRobotRotation
 		
 		var stickedRobot = stickedRobotScene.instance()
 		stickedRobot.player = self
-		var stickedRobotSprite = stickedRobot.get_node("sticked_robot")
-		var stickedRobotCollisionShape2D = stickedRobot.get_node("StickingField/CollisionShape2D")
 		
-		stickedRobotSprite.position = foreignRobotRelativePosition
-		stickedRobotCollisionShape2D.position = foreignRobotRelativePosition
-		
-		stickedRobotSprite.rotation = foreignRobotRotation
-		stickedRobotCollisionShape2D.rotation = foreignRobotRotation
+		stickedRobot.add_child(foreignRobotSprite)
+		stickedRobot.get_node("StickingField").call_deferred("add_child", foreignRobotCollisionShape2D)
 		
 		get_tree().get_current_scene().remove_child(area.get_parent())
 		
