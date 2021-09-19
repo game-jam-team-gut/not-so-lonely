@@ -5,7 +5,7 @@ stages:
   - deploy
 
 variables:
-  EXPORT_NAME: void-taxi
+  EXPORT_NAME: not-so-lonely
 
 linux:
   stage: export
