@@ -17,15 +17,17 @@ func check_movement():
 
 func check_magnetic_field():
 	var collisionShape2D = get_node("MagneticField/CollisionShape2D")
-	var scaleChange = 0.02
-	var originalScale = Vector2(2.2, 2.2)
+	var minimalScale = Vector2(2.2, 2.2)
+	var maximalScale = Vector2(minimalScale.x * 3, minimalScale.y * 3)
+	var scaleChange = minimalScale.x / 16
 	
 	if Input.is_action_pressed("m2"):
 		var newScale = Vector2 (collisionShape2D.scale.x + scaleChange, collisionShape2D.scale.y + scaleChange)
-		collisionShape2D.scale = newScale
+		if newScale <= maximalScale:
+			collisionShape2D.scale = newScale
 	else:
 		var newScale = Vector2 (collisionShape2D.scale.x - scaleChange, collisionShape2D.scale.y - scaleChange)
-		if newScale >= originalScale:
+		if newScale >= minimalScale:
 			collisionShape2D.scale = newScale
 
 func get_input():
