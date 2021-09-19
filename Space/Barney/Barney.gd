@@ -14,8 +14,7 @@ var targetPosition = Vector2()
 var velocity = Vector2()
 
 func rotate_barney():
-	get_node("Sprite").look_at(get_global_mouse_position())
-	get_node("StickingField/CollisionShape2D").look_at(get_global_mouse_position())
+	get_node("Rotates").look_at(get_global_mouse_position())
 
 func check_movement():
 	if Input.is_action_pressed("m1"):
@@ -27,7 +26,7 @@ func increase_minimal_scale():
 	minimalScale = Vector2(minimalScale.x * minimalScaleFactor, minimalScale.y * minimalScaleFactor)
 
 func check_magnetic_field():
-	var collisionShape2D = get_node("MagneticField/CollisionShape2D")
+	var collisionShape2D = get_node("Rotates/MagneticField/CollisionShape2D")
 	var maximalScale = Vector2(minimalScale.x * maximalScaleFactor, minimalScale.y * maximalScaleFactor)
 	var scaleChange = minimalScale.x / scaleChangeFactor
 	
