@@ -5,6 +5,7 @@ signal robot_sticked(global_pos)
 onready var stickedRobotScene = preload("res://Space/StickedRobot.tscn")
 
 export (int) var speed = 200
+export (Vector2) var minimalScale = Vector2(2.2, 2.2)
 
 var targetPosition = Vector2()
 var velocity = Vector2()
@@ -15,9 +16,11 @@ func check_movement():
 	else:
 		targetPosition = position
 
+func increase_minimal_scale():
+	minimalScale = Vector2(minimalScale.x * 2, minimalScale.y * 2)
+
 func check_magnetic_field():
 	var collisionShape2D = get_node("MagneticField/CollisionShape2D")
-	var minimalScale = Vector2(2.2, 2.2)
 	var maximalScale = Vector2(minimalScale.x * 3, minimalScale.y * 3)
 	var scaleChange = minimalScale.x / 16
 	
