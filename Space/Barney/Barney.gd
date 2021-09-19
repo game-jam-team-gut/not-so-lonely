@@ -28,7 +28,7 @@ func check_magnetic_field():
 	var xChange = 10.0
 	
 	if Input.is_action_pressed("m2"):
-		if collisionShape2D.position.x < get_viewport().size.x / 2.5:
+		if collisionShape2D.position.x < get_viewport().size.x * 0.25 * get_node("Camera2D").zoom.x:
 			collisionShape2D.shape.extents.x += xChange
 			collisionShape2D.position.x += xChange
 	else:

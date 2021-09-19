@@ -6,6 +6,7 @@ var zoom_out_scale = 1.5
 var zoom_out_treshold = 0.85
 onready var line = get_node("Line2D")# remove for final build
 var debug_line = true
+var viewport_size_quarter
 
 func _ready():
 	line.set_visible(debug_line)
@@ -27,7 +28,7 @@ func zoom_out():
 	_on_Barney_robot_sticked(Vector2.ZERO) # remove for final build
 
 func _on_Barney_robot_sticked(pos):
-	var viewport_size_quarter = get_viewport().size * 0.5 * zoom
+	viewport_size_quarter = get_viewport().size * 0.5 * zoom
 	var offset = viewport_size_quarter.x * (1 - zoom_out_treshold)
 	viewport_size_quarter -= Vector2(offset, offset)
 	
