@@ -14,7 +14,7 @@ var velocity = Vector2()
 var magneticFieldType = -1 # -1 - sticking field, 1 - repulsive field
 
 func applyMagneticForce(area, delta):
-	if area.is_in_group("ForeignRobots"):
+	if area.is_in_group("ForeignRobots") or area.is_in_group("Asteroid"):
 		var foreignRobot = area.get_parent()
 		var positionDifference = foreignRobot.position - self.position
 		
@@ -98,7 +98,7 @@ func _on_StickingField_area_entered(area):
 		emit_signal("robot_sticked", foreignRobotRelativePosition)
 	elif area.is_in_group("Asteroid"):
 		area.get_parent().destroy()
-		destroy()
+		get_tree().change_scene("res://MainMenu.tscn")
 
 func robot_sticked_to_another(pos):
 	emit_signal("robot_sticked", pos)
