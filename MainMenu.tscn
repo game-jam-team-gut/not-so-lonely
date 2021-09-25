@@ -34,10 +34,10 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 margin_top = 11.0
-margin_right = 1243.0
+margin_right = 1317.0
 margin_bottom = 201.0
 custom_fonts/font = SubResource( 1 )
-text = "Not So Alone"
+text = "Not So Lonely"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 margin_left = 660.0
