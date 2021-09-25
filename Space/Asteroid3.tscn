@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Space/Asteroids/asteroid3.png" type="Texture" id=1]
-[ext_resource path="res://Space/ForeignRobot/ForeignRobot.gd" type="Script" id=2]
-[ext_resource path="res://Space/ForeignRobot/ForeignRobotStateMachine.gd" type="Script" id=3]
+[ext_resource path="res://Space/Entity/Asteroid/asteroid_3.png" type="Texture" id=1]
+[ext_resource path="res://Space/Entity/Entity.gd" type="Script" id=2]
+[ext_resource path="res://Space/Entity/EntityStateMachine.gd" type="Script" id=3]
+
 
 [node name="Asteroid3" type="RigidBody2D" groups=[
 "Asteroid",

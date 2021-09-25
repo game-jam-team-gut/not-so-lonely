@@ -15,11 +15,10 @@ func _ready():
 	state_time = rng.randi_range(500, 10000)
 
 func destroy():
-	#particles
 	queue_free()
 
 func idle():
-	pass # do nothing XD
+	pass
 
 func choose_direction():
 	rng.randomize()
@@ -43,7 +42,3 @@ func go():
 	var strength = (position_to_go - position).normalized() * rng.randi_range(movement_force_min, movement_force_max)
 	add_force(Vector2.ZERO, strength)
 	add_central_force(strength)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass

@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Credits/credits_background.png" type="Texture" id=1]
-[ext_resource path="res://MainMenu/SpaceQuest-Xj4o.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://MainMenu/Font.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://MainMenu/Font.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Credits/Credits.gd" type="Script" id=4]
-[ext_resource path="res://Credits/robot_3.mp3" type="AudioStream" id=5]
+[ext_resource path="res://Credits/credits.mp3" type="AudioStream" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 84
@@ -34,7 +34,7 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 margin_top = 99.0
-margin_right = 2169.0
+margin_right = 1501.0
 margin_bottom = 1086.0
 custom_fonts/font = SubResource( 1 )
 text = "Credits:
