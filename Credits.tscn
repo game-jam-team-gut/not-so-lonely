@@ -34,15 +34,15 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 margin_top = 99.0
-margin_right = 1493.0
+margin_right = 2169.0
 margin_bottom = 1086.0
 custom_fonts/font = SubResource( 1 )
-text = "Credits
+text = "Credits:
 Programmers:
-Mateusz Grzonka Filip szweda 
+Mateusz Grzonka, Filip szweda 
 
-GRAPHIC DESIGNER:
-tYMOTEUSZ SZWEDA
+Graphics designer:
+Tymoteusz szweda
 
 Music designer:
 mateusz srodka
