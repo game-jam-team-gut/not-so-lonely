@@ -18,7 +18,7 @@ func zoom_out():
 		zoom_tween.EASE_OUT
 	)
 	zoom_tween.start()
-	get_parent().updateMagneticFieldSize()
+	get_parent().update_magnetic_field_size()
 
 func _on_Barney_robot_sticked(pos):
 	viewport_size_quarter = get_viewport().size * 0.5 * zoom
