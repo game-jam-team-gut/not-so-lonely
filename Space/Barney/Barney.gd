@@ -13,7 +13,7 @@ var targetPosition = Vector2()
 var velocity = Vector2()
 var magneticFieldType = -1 # -1 - sticking field, 1 - repulsive field
 
-func applyMagneticForce(area, delta):
+func apply_magnetic_force(area, delta):
 	if area.is_in_group("ForeignRobots") or area.is_in_group("Asteroid"):
 		var foreignRobot = area.get_parent()
 		var positionDifference = foreignRobot.position - self.position
@@ -27,38 +27,38 @@ func applyMagneticForce(area, delta):
 		elif(positionDifference.y > 0):
 			foreignRobot.add_force(Vector2(0, 0), Vector2(0, magneticFieldType * magneticFieldForceFactor * delta * positionDifference.y))
 
-func rotateBarney():
+func rotate_barney():
 	get_node("Rotates").look_at(get_global_mouse_position())
 
-func checkMovement():
+func check_movement():
 	if Input.is_action_pressed("m1"):
 		targetPosition = get_global_mouse_position()
 	else:
 		targetPosition = position
 
-func checkMagneticFieldType():
+func check_magnetic_field_type():
 	if Input.is_action_pressed("m2"):
 		magneticFieldType = 1
 	else:
 		magneticFieldType = -1
 
-func getInput():
-	checkMovement()
-	checkMagneticFieldType()
+func get_input():
+	check_movement()
+	check_magnetic_field_type()
 
-func updateMagneticFieldSize():
+func update_magnetic_field_size():
 	var sizeChange = get_viewport().size.x * 0.25 * get_node("Camera2D").zoom.x
 	magneticFieldcollisionShape2D.shape.extents.x += sizeChange - magneticFieldcollisionShape2D.position.x
 	magneticFieldcollisionShape2D.position.x = sizeChange
 	magneticFieldSprite.scale.x = 2 * magneticFieldcollisionShape2D.shape.extents.x / magneticFieldSprite.get_texture().get_size().x
 	
 func _ready():
-	updateMagneticFieldSize()
+	update_magnetic_field_size()
 
-func checkMagneticFieldContents(delta):
+func check_magnetic_field_contents(delta):
 	if get_node("Rotates/MagneticField").get_overlapping_areas().size() > 0:
 		for area in get_node("Rotates/MagneticField").get_overlapping_areas():
-				applyMagneticForce(area, delta)
+				apply_magnetic_force(area, delta)
 
 func move():
 	velocity = position.direction_to(targetPosition) * speed
@@ -66,10 +66,10 @@ func move():
 		velocity = move_and_slide(velocity)
 
 func _physics_process(delta):
-	checkMagneticFieldContents(delta)
-	getInput()
+	check_magnetic_field_contents(delta)
+	get_input()
 	move()
-	rotateBarney()
+	rotate_barney()
 
 func _on_StickingField_area_entered(area):
 	if area.is_in_group("ForeignRobots"):
