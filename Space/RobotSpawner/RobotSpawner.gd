@@ -1,6 +1,10 @@
 extends Node
 
-onready var robots = [preload("res://Space/ForeignRobot1.tscn"), preload("res://Space/ForeignRobot2.tscn"), preload("res://Space/ForeignRobot3.tscn"), preload("res://Space/ForeignRobot4.tscn"), preload("res://Space/ForeignRobot5.tscn"), preload("res://Space/ForeignRobot6.tscn"), preload("res://Space/ForeignRobot7.tscn"), preload("res://Space/ForeignRobot8.tscn"), preload("res://Space/ForeignRobot9.tscn")]
+onready var robots = [preload("res://Space/ForeignRobot1.tscn"), preload("res://Space/ForeignRobot2.tscn"), preload("res://Space/ForeignRobot3.tscn"),
+	preload("res://Space/ForeignRobot4.tscn"), preload("res://Space/ForeignRobot5.tscn"), preload("res://Space/ForeignRobot6.tscn"),
+	preload("res://Space/ForeignRobot7.tscn"), preload("res://Space/ForeignRobot8.tscn"), preload("res://Space/ForeignRobot9.tscn"),
+	preload("res://Space/Asteroid1.tscn"), preload("res://Space/Asteroid2.tscn"), preload("res://Space/Asteroid3.tscn"),
+	preload("res://Space/Asteroid1.tscn"), preload("res://Space/Asteroid2.tscn"), preload("res://Space/Asteroid3.tscn")]
 onready var barney = get_node("../Barney")
 onready var camera = barney.get_node("Camera2D")
 
@@ -28,11 +32,6 @@ func generate_starting_robots():
 		
 		current_robots.append(robot_instance)
 		robot_instance.camera = camera
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
 
 func _on_SpawnTimer_timeout():
 		spawn_distance = camera.get_viewport().size.length()

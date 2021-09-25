@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Space/Asteroids/asteroid1.png" type="Texture" id=1]
-[ext_resource path="res://Space/Asteroids/Asteroid.gd" type="Script" id=2]
+[ext_resource path="res://Space/ForeignRobot/ForeignRobot.gd" type="Script" id=2]
+[ext_resource path="res://Space/ForeignRobot/ForeignRobotStateMachine.gd" type="Script" id=3]
 
 [node name="Asteroid1" type="RigidBody2D" groups=[
 "Asteroid",
@@ -9,13 +10,24 @@
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 1, 1 )
 texture = ExtResource( 1 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="."]
+visible = false
+margin_left = -20.69
+margin_top = -73.7499
+margin_right = 19.31
+margin_bottom = -59.7499
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Area2D" type="Area2D" parent="." groups=[
 "Asteroid",
 ]]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-scale = Vector2( 1, 1 )
 polygon = PoolVector2Array( -2.49376, -67.8914, -11.9596, -73.7379, -70.1464, -58.9824, -87.686, -62.0449, -107.174, -57.0336, -122.765, -44.2269, -114.97, -24.1817, -102.441, -6.64211, -79.0554, 7.55658, -60.4022, 22.3121, -46.2035, 42.3573, -34.7888, 50.7095, -10.0107, 53.2151, 8.64248, 62.9594, 29.5229, 75.766, 56.5283, 72.982, 77.6871, 58.5049, 86.8745, 40.9653, 89.3802, 27.6018, 71.0054, 8.11339, 57.3635, -3.02284, 51.517, -19.4488, 39.2671, -34.2043, 15.3242, -52.8575, 2.79596, -62.6017 )
